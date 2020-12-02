@@ -41,8 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'crispy_forms',
     'authentication',
-
     'grades',
+    'frontend'
 ]
 
 MIDDLEWARE = [
@@ -136,3 +136,6 @@ MESSAGE_TAGS = {
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 APPEND_SLASH = True
+
+LOGIN_URL = '/auth/login'
+LOGIN_REDIRECT_URL = '/'

@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 
 
-SUCCESSFUL_REDIRECT_URL = '/api'
+SUCCESSFULL_AUTH_REDIRECT_URL = '/'
 
 
 def register_request(request):
@@ -15,9 +15,9 @@ def register_request(request):
             user = form.save()
             login(request, user)
             messages.success(request, "Registration successful.")
-            return redirect(SUCCESSFUL_REDIRECT_URL)
+            return redirect(SUCCESSFULL_AUTH_REDIRECT_URL)
         messages.error(request, "Unsuccessful registration. Invalid information.")
-    form = NewUserForm()
+    form = NewUserForm
     return render(request=request, template_name="register.html", context={"register_form": form})
 
 
@@ -30,14 +30,11 @@ def login_request(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                print(f'logged in as {username}')
                 messages.info(request, f"You are now logged in as {username}.")
-                return redirect(SUCCESSFUL_REDIRECT_URL)
+                return redirect(SUCCESSFULL_AUTH_REDIRECT_URL)
             else:
-                print('error while logging in')
                 messages.error(request, "Invalid username or password.")
         else:
-            print('error while logging in')
             messages.error(request, "Invalid username or password.")
     form = AuthenticationForm()
     return render(request=request, template_name="login.html", context={"login_form": form})
@@ -46,4 +43,4 @@ def login_request(request):
 def logout_request(request):
     logout(request)
     messages.info(request, "You have successfully logged out.")
-    return redirect("/auth/login/")
+    return redirect("/auth/login")
