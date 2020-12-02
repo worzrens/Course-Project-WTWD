@@ -5,6 +5,9 @@ from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 
 
+SUCCESSFUL_REDIRECT_URL = '/api'
+
+
 def register_request(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)
@@ -12,7 +15,7 @@ def register_request(request):
             user = form.save()
             login(request, user)
             messages.success(request, "Registration successful.")
-            return redirect("/admin")
+            return redirect(SUCCESSFUL_REDIRECT_URL)
         messages.error(request, "Unsuccessful registration. Invalid information.")
     form = NewUserForm()
     return render(request=request, template_name="register.html", context={"register_form": form})
@@ -29,7 +32,7 @@ def login_request(request):
                 login(request, user)
                 print(f'logged in as {username}')
                 messages.info(request, f"You are now logged in as {username}.")
-                return redirect("/admin")
+                return redirect(SUCCESSFUL_REDIRECT_URL)
             else:
                 print('error while logging in')
                 messages.error(request, "Invalid username or password.")
