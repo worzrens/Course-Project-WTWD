@@ -1,5 +1,7 @@
 import React from 'react';
 import Link from '@material-ui/core/Link';
+import axios from 'axios';
+import _ from 'lodash';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -35,6 +37,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Orders() {
+
+  axios.get('/api/grades')
+    .then(function (response) {
+      console.log(response.data);
+
+      const groupedBySubj = _.groupBy(response.data, 'subject.name');
+
+      console.log(groupedBySubj);
+      console.log(groupedBySubjAndPupil);
+    })
+
   const classes = useStyles();
   return (
     <React.Fragment>
