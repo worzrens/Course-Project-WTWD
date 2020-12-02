@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from grades.models import Pupil, Group, Grade
 from grades.serializer import PupilSerializer, DetailedPupilSerializer, GroupSerializer, DetailedGroupSerializer, \
     GradeSerializer
@@ -6,6 +6,7 @@ from grades.serializer import PupilSerializer, DetailedPupilSerializer, GroupSer
 
 class PupilViewSet(viewsets.ModelViewSet):
     queryset = Pupil.objects.all()
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
         return {
@@ -16,6 +17,7 @@ class PupilViewSet(viewsets.ModelViewSet):
 
 class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
         return {
@@ -26,6 +28,7 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 class GradeViewSet(viewsets.ModelViewSet):
     queryset = Grade.objects.all()
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
         return {
