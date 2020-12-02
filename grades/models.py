@@ -21,6 +21,9 @@ class Pupil(models.Model):
     patronymic = models.CharField(max_length=30)
     group = models.ForeignKey(Group, related_name='pupils', on_delete=models.CASCADE)
 
+    def get_own_grades(self):
+        return Grade.objects.filter(pupil=self)
+
 
 class Subject(models.Model):
     name = models.CharField(max_length=30)
@@ -30,10 +33,11 @@ class Teacher(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     patronymic = models.CharField(max_length=30)
-    subject = models.OneToOneField(Subject, on_delete=models.CASCADE)
+    subject = models.OneToOneField(Subject, related_name='teacher', on_delete=models.CASCADE)
 
 
 class Grade(models.Model):
     pupil = models.ForeignKey(Pupil, on_delete=models.CASCADE)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     date = models.DateTimeField()
+    mark = models.IntegerField()

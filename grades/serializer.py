@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from grades.models import Pupil, Group
+from grades.models import Pupil, Group, Grade, Subject
 from grades.utils import SCHOOL_SPECIALITY_CHOICES
 
 
@@ -32,14 +32,6 @@ class PupilSerializer(serializers.ModelSerializer):
         fields = ['first_name', 'last_name', 'patronymic']
 
 
-class DetailedPupilSerializer(serializers.ModelSerializer):
-    group = GroupSerializer(read_only=True)
-
-    class Meta:
-        model = Pupil
-        fields = ['first_name', 'last_name', 'patronymic', 'group']
-
-
 class DetailedGroupSerializer(serializers.ModelSerializer):
     speciality = CustomChoiceField(choices=SCHOOL_SPECIALITY_CHOICES)
     pupils = PupilSerializer(many=True, read_only=True)
@@ -47,3 +39,35 @@ class DetailedGroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
         fields = ['year', 'speciality', 'pupils']
+
+
+class SubjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Subject
+        fields = ['name']
+
+
+class GradeSerializer(serializers.ModelSerializer):
+    pupil = PupilSerializer(read_only=True)
+    subject = SubjectSerializer(read_only=True)
+
+    class Meta:
+        model = Grade
+        fields = ['pupil', 'subject', 'date', 'mark']
+
+
+class SimpleGradeSerializer(serializers.ModelSerializer):
+    subject = SubjectSerializer(read_only=True)
+
+    class Meta:
+        model = Grade
+        fields = ['subject', 'date', 'mark']
+
+
+class DetailedPupilSerializer(serializers.ModelSerializer):
+    group = GroupSerializer(read_only=True)
+    grades = SimpleGradeSerializer(many=True, source='get_own_grades')
+
+    class Meta:
+        model = Pupil
+        fields = ['first_name', 'last_name', 'patronymic', 'group', 'grades']
