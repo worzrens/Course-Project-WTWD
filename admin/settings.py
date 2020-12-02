@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'authentication',
 
-    'grades',
+    'ecommerce',
 ]
 
 MIDDLEWARE = [
