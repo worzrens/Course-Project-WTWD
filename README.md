@@ -1,1 +1,1 @@
-# Course-Project-WTWD-Back
+# Электронный журнал на Django/ReactJS
