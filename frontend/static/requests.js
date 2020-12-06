@@ -13,6 +13,21 @@ const render_offers = (offers) => {
             ).join('');
 }
 
+const render_offer_info = (offer) => {
+    document.getElementById('offer-info-container').innerHTML = `<div style="display: grid; grid-template-columns: 1fr 2fr">
+                <div style="grid-column: 1; grid-row: 1"><a href="/"><p style="color: #5e72e4">Back</p></a></div>
+                <div style="grid-column: 1; grid-row: 2"><img src="../../pics/white.png" style=" height: 200px"></div>
+                <div style="grid-column: 2; grid-row: 2">
+                  <p>Name: ${offer.name}</p>
+                  <p>Category: ${offer.category}</p>
+                  <p>Count: ${offer.count}</p>
+                  <p>Release Date: ${offer.release_date}</p>
+                  <p>Price: ${parseFloat(offer.price).toFixed(2)}</p>
+                 <input type="button" name="Buy" value="Buy!" style="width: 100px">
+                </div>
+             </div>`;
+}
+
 const get_offer_info = async (id) => {
     return await axios.get("/api/offers/"+id)
         .then((result) => result.data);
