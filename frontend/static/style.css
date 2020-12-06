@@ -1,0 +1,77 @@
+body{
+	background-color: #212529
+}
+p{
+	color: white
+}
+a{
+	text-decoration: none;
+}
+.wrap{
+	display: flex;
+	flex-direction: row;
+}
+.menu{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: baseline;
+	align-content: flex-start;
+    background-color: #121212;
+    height: 93vh;
+    width: 20vw;
+	padding: 3vh;
+}
+.top{
+	position: fixed;
+	top: 0;
+	right: 5px;
+	display: flex;
+	flex-direction: row;
+    padding: 10px;
+}
+.main{
+	margin-top: 10vh;
+	margin-left: 20vh;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: baseline;
+	align-content: flex-start;
+
+	background-color: #212529;
+    padding: 1vh;
+    height: 60vh;
+}
+.good{
+	margin: 2vh;
+	background-color: #121212;
+	width: 20vw;
+	height: 20vh;
+}
+.price{
+	text-align: right;
+	margin-right: 5%; 
+}
+.name{
+	margin-left: 5%; 
+}
+.current{
+	color: #5e72e4;
+	margin-left: -2vh;
+}
+.search{
+	border-radius: 100px; /* Радиус скругления */
+    border: 3px solid #5e72e4; /* Параметры рамки */
+}
+.profile{
+	display: grid;
+}
+.info{
+	grid-column: 2;
+	grid-row: 2;
+}
+.productpage{
+	display: grid;
+}

@@ -44,4 +44,4 @@ class OfferItemListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OfferItem
-        fields = ['name', 'price', 'category']
+        fields = ['id', 'name', 'price', 'category']

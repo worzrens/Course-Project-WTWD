@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
 
@@ -26,7 +26,7 @@ SECRET_KEY = '_6#!_bbs&w%$xjqn(1yn@@d3fs&cndcb0oc)-)a9w6#(z7ci9t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'crispy_forms',
     'authentication',
-
+    'frontend',
     'ecommerce',
 ]
 
@@ -57,10 +57,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'admin.urls'
 
+SETTINGS_PATH = os.path.normpath(os.path.dirname(__file__))
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(SETTINGS_PATH, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -136,3 +138,6 @@ MESSAGE_TAGS = {
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 APPEND_SLASH = True
+
+LOGIN_URL = '/auth/login'
+LOGIN_REDIRECT_URL = '/'

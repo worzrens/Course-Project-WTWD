@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 
 
-SUCCESSFUL_REDIRECT_URL = '/api'
+SUCCESSFUL_REDIRECT_URL = '/'
 
 
 def register_request(request):

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <script>
+        const do_everything = async () => {
+            const offers = await get_data();
+            render_offers(offers)
+            console.log(offers);
+        }
+
+        do_everything();
+    </script>
+      <div class="top">
+        <input maxlength="25" size="40" placeholder="Search" class="search" style="grid-column: 1;" onkeyup="handleSearchInput(event)">
+        <div style="grid-column: 2; height: 20px"><a href="/profile/"><img src="picsrofile.png" class="search" style="height: 20px;  margin-left: 20%;"></a></div>
+      </div>
+
+    <div class="wrap">
+        <div class="menu">
+            <div><a href="/"><p class="current">Tech</p></a></div>
+            <div><a href="/home/"><p class="name">Home</p></a></div>
+            <div><a href="/cloth/"><p class="name">Cloth</p></a></div>
+        </div>
+
+        <div class="main" id="offers-list"></div>
+    </div>
+
+    </div>
+{% endblock %}
