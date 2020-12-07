@@ -4,7 +4,7 @@
     <script>
         const do_everything = async () => {
             const offers = await get_data();
-            render_offers(offers)
+            render_offers(offers.filter(({category}) => category === 'Tech'))
             console.log(offers);
         }
 

@@ -1,48 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="wrap">
+    <script>
+        const do_everything = async () => {
+            const offers = await get_data();
+            render_offers(offers.filter(({category}) => category === 'Clothes'))
+            console.log(offers);
+        }
 
+        do_everything();
+    </script>
       <div class="top">
-        <input maxlength="25" size="40" value="Search" class="search" style="grid-column: 1;">
+        <input maxlength="25" size="40" placeholder="Search" class="search" style="grid-column: 1;" onkeyup="handleSearchInput(event)">
         <div style="grid-column: 2; height: 20px"><a href="/profile/"><img src="picsrofile.png" class="search" style="height: 20px;  margin-left: 20%;"></a></div>
       </div>
-      <div class="menu">
-        <div><a href="/"><p class="name">Tech</p></a></div>
-        <div><a href="/home/"><p class="name">Home</p></a></div>
-        <div><a href="/cloth/"><p class="current">Cloth</p></a></div>
-      </div>
-      <div class="main">
-        <div class="good1">
-          <a href="productsloth/product1c.html"><img src="picshite.png" style="width: 100%;">
-          <p class="name">Product1C</p></a>          
-          <p class="price">$$$</p>
+
+    <div class="wrap">
+        <div class="menu">
+            <div><a href="/"><p class="name">Tech</p></a></div>
+            <div><a href="/home/"><p class="name">Home</p></a></div>
+            <div><a href="/cloth/"><p class="current">Cloth</p></a></div>
         </div>
-        <div class="good2">
-          <a href="productsloth/product2c.html"><img src="picshite.png" style="width: 100%;">
-          <p class="name">Product2C</p></a> 
-          <p class="price">$$$</p>
-        </div>
-        <div class="good3">
-          <a href="productsloth/product3c.html"><img src="picshite.png" style="width: 100%;">
-          <p class="name">Product3C</p></a> 
-          <p class="price">$$$</p>
-        </div>
-        <div class="good4">
-          <a href="productsloth/product4c.html"><img src="picshite.png" style="width: 100%;">
-          <p class="name">Product4C</p></a> 
-          <p class="price">$$$</p>
-        </div>
-        <div class="good5">
-          <a href="productsloth/product5c.html"><img src="picshite.png" style="width: 100%;">
-          <p class="name">Product5C</p></a> 
-          <p class="price">$$$</p>
-        </div>
-        <div class="good6">
-          <a href="productsloth/product6c.html"><img src="picshite.png" style="width: 100%;">
-          <p class="name">Product6C</p></a> 
-          <p class="price">$$$</p>
-      </div>
+
+        <div class="main" id="offers-list"></div>
+    </div>
 
     </div>
 {% endblock %}

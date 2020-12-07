@@ -1,48 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="wrap">
+    <script>
+        const do_everything = async () => {
+            const offers = await get_data();
+            render_offers(offers.filter(({category}) => category === 'Home'))
+            console.log(offers);
+        }
 
+        do_everything();
+    </script>
       <div class="top">
-        <input maxlength="25" size="40" value="Search" class="search" style="grid-column: 1;">
+        <input maxlength="25" size="40" placeholder="Search" class="search" style="grid-column: 1;" onkeyup="handleSearchInput(event)">
         <div style="grid-column: 2; height: 20px"><a href="/profile/"><img src="picsrofile.png" class="search" style="height: 20px;  margin-left: 20%;"></a></div>
       </div>
-      <div class="menu">
-        <div><a href="/"><p class="name">Tech</p></a></div>
-        <div><a href="/home/"><p class="current">Home</p></a></div>
-        <div><a href="/cloth/"><p class="name">Cloth</p></a></div>
-      </div>
-      <div class="main">
-        <div class="good1">
-          <a href="productsome/product1h.html"><img src="picshite.png" style="width: 100%;">
-          <p class="name">Product1H</p></a>      
-          <p class="price">$$$</p>
+
+    <div class="wrap">
+        <div class="menu">
+            <div><a href="/"><p class="name">Tech</p></a></div>
+            <div><a href="/home/"><p class="current">Home</p></a></div>
+            <div><a href="/cloth/"><p class="name">Cloth</p></a></div>
         </div>
-        <div class="good2">
-          <a href="productsome/product2h.html"><img src="picshite.png" style="width: 100%;">
-          <p class="name">Product2H</p></a>
-          <p class="price">$$$</p>
-        </div>
-        <div class="good3">
-          <a href="productsome/product3h.html"><img src="picshite.png" style="width: 100%;">
-          <p class="name">Product3H</p></a>
-          <p class="price">$$$</p>
-        </div>
-        <div class="good4">
-          <a href="productsome/product4h.html"><img src="picshite.png" style="width: 100%;">
-          <p class="name">Product4H</p></a>
-          <p class="price">$$$</p>
-        </div>
-        <div class="good5">
-          <a href="productsome/product5h.html"><img src="picshite.png" style="width: 100%;">
-          <p class="name">Product5H</p></a>
-          <p class="price">$$$</p>
-        </div>
-        <div class="good6">
-          <a href="productsome/product6h.html"><img src="picshite.png" style="width: 100%;">
-          <p class="name">Product6H</p></a>
-          <p class="price">$$$</p>
-      </div>
+
+        <div class="main" id="offers-list"></div>
+    </div>
 
     </div>
 {% endblock %}
