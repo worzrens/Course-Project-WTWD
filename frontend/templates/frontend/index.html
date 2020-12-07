@@ -4,7 +4,7 @@
     <script>
         const do_everything = async () => {
             const offers = await get_data();
-            render_offers(offers.filter(({category}) => category === 'Tech'))
+            render_offers(offers.filter(({category}) => category === 'Tech'), 'tech')
             console.log(offers);
         }
 
@@ -12,7 +12,8 @@
     </script>
       <div class="top">
         <input maxlength="25" size="40" placeholder="Search" class="search" style="grid-column: 1;" onkeyup="handleSearchInput(event)">
-        <div style="grid-column: 2; height: 20px"><a href="/profile/"><img src="picsrofile.png" class="search" style="height: 20px;  margin-left: 20%;"></a></div>
+          {% load static %}
+        <div style="grid-column: 2; height: 20px"><a href="/profile/"><img src="{% static '/pics/profile.png' %}" class="search" style="height: 20px;  margin-left: 20%;"></a></div>
       </div>
 
     <div class="wrap">
@@ -22,6 +23,7 @@
             <div><a href="/cloth/"><p class="name">Cloth</p></a></div>
         </div>
 
+                    {% load static %}
         <div class="main" id="offers-list"></div>
     </div>
 
